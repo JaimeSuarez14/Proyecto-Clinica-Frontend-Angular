@@ -1,0 +1,26 @@
+<p>medico-page works!</p>
+<section>
+  <div>
+    <h1>Lista de Medicos</h1>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Cedula</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of medicos(); track $index) {
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.cedula }}</td>
+              <td>{{ item.nombre }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

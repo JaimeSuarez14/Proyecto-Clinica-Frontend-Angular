@@ -1,1 +1,13 @@
-<p>home works!</p>
+<section class="h-screen w-full flex items-center justify-center">
+  <div class=" grid grid-cols-2 gap-5 content-center items-center justify-center">
+    @for (item of menu; track $index) {
+    <div class="flex items-center flex-col gap-2 px-5 py-2 border rounded-lg">
+      <lucide-icon [img]="item.icon" class="my-icon" size="100px"></lucide-icon>
+      <span class="text-xl font-bold text-blue-500">{{ item.name }}</span>
+      <a routerLink="{{item.route}}"
+        class="px-4 py-1 rounded-lg border border-gray-600 hover:bg-amber-100 hover:border-amber-500 transition-colors duration-200">Ver</a>
+    </div>
+
+    }
+  </div>
+</section>

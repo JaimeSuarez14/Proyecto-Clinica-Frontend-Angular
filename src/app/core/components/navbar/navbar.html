@@ -1,6 +1,12 @@
 <header class="bg-red-950 text-white">
   <div class="p-4 flex justify-between">
-    <span>Hospital</span>
-    <span>Jaime</span>
+    <a routerLink="/" class="flex items-center gap-2 hover:text-blue-200">
+      <lucide-icon [img]="hospital" class="my-icon"></lucide-icon>
+      <span>Hospital</span>
+    </a>
+    <div class="flex items-center gap-2">
+      <span class="text-xl font-bold ">Jaime</span>
+      <lucide-icon [img]="userRound" class="my-icon"></lucide-icon>
+    </div>
   </div>
 </header>

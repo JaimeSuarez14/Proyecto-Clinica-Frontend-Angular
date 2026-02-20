@@ -1,16 +1,21 @@
 import { Routes } from '@angular/router';
 import { MedicoPage } from './pages/medicos/medico-page/medico-page';
-import { App } from './app';
+import { Home } from './pages/home/home';
 
 export const routes: Routes = [
   {
-    component: App,
+    path: '',
     title: 'Home',
-    path: ""
+    component: Home,
   },
   {
-    component: MedicoPage,
+    path: 'medicos',
     title: 'Medicos',
-    path: "medicos"
+    component: MedicoPage,
+  },
+  {
+    path:"**",
+    redirectTo:"/",
+    pathMatch:"full"
   }
 ];

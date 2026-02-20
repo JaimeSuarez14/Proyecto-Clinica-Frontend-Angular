@@ -4,7 +4,17 @@
       <p class="text-sm font-semibold text-indigo-600 uppercase tracking-wide">Espacio de médicos</p>
       <h1 class="text-3xl font-bold text-gray-900">Lista de Médicos</h1>
     </div>
-
+    @if (error()) {
+      <p class="px-6 py-10 text-center text-gray-400 italic">
+              {{error()}}
+      </p>
+    }
+    <div class="flex justify-between my-2">
+      <button type="button" class="px-2 py-1 rounded-lg border">
+        Crear
+      </button>
+      <input type="text" class="border p-2 rounded-md" placeholder="Ingrese el medico a buscar...">
+    </div>
     <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200">
       <table class="w-full text-left border-collapse">
         <thead>
@@ -31,9 +41,15 @@
           </tr>
           } @empty {
           <tr>
+            @if (cargando()) {
+            <td colspan="3" class="px-6 py-10 text-center text-gray-400 italic">
+              Cargando...
+            </td>
+            }@else {
             <td colspan="3" class="px-6 py-10 text-center text-gray-400 italic">
               No hay médicos registrados actualmente.
             </td>
+            }
           </tr>
           }
         </tbody>

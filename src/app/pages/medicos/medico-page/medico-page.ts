@@ -1,7 +1,6 @@
 import { type ResponseMedicos } from './../../../core/models/Medico';
 import { Component, computed, inject, signal } from '@angular/core';
 import { MedicoService } from '../../../core/services/medico-service';
-import { flatMap } from 'rxjs';
 
 @Component({
   selector: 'app-medico-page',

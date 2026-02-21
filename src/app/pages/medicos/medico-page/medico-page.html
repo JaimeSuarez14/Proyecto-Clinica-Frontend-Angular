@@ -69,11 +69,30 @@
           <option value=10 >10</option>
           <option value=20 >20</option>
         </select>
-        <span>{{ numeroPagina()==0 ? numeroPagina()+1 : cantidadPorPagina()*(numeroPagina()+1) }} de {{cantidadPorPagina()}} of {{ totalMedicos() }}</span>
-        <button class="px-2 group py-0.5 rounded-lg border flex items-center gap-1 hover:border-blue-600">|<</button>
-        <button class="px-2 group py-0.5 rounded-lg border flex items-center gap-1 hover:border-blue-600"><</button>
-        <button class="px-2 group py-0.5 rounded-lg border flex items-center gap-1 hover:border-blue-600">></button>
-        <button class="px-2 group py-0.5 rounded-lg border flex items-center gap-1 hover:border-blue-600">>|</button>
+        <span>{{ desde() }} de {{hasta()}} of {{ totalPaginas() }}</span>
+
+        <button (click)="primera()" class="px-2 py-0.5 rounded-lg border flex items-center gap-1
+         hover:border-blue-600 disabled:text-gray-400 disabled:cursor-not-allowed
+         disabled:hover:border-gray-400" [disabled]="(this.numeroPagina() <= 0)">
+          <lucide-icon [img]="ChevronFirst" class="group-hover:text-blue-500"></lucide-icon>
+        </button>
+
+        <button (click)="anterior()" class="px-2 py-0.5 rounded-lg border flex items-center gap-1
+         hover:border-blue-600 disabled:text-gray-400 disabled:cursor-not-allowed
+         disabled:hover:border-gray-400" [disabled]="(this.numeroPagina() <= 0)">
+          <lucide-icon [img]="ChevronLeft" class="group-hover:text-blue-500"></lucide-icon>
+        </button>
+
+        <button (click)="siguiente()" class="px-2 py-0.5 rounded-lg border flex items-center gap-1
+         hover:border-blue-600 disabled:text-gray-400 disabled:cursor-not-allowed
+         disabled:hover:border-gray-400" [disabled]="!(this.numeroPagina() < this.totalPaginas() - 1)" >
+           <lucide-icon [img]="ChevronRight" class="group-hover:text-blue-500"></lucide-icon>
+        </button>
+        <button (click)="ultima()" class="px-2 py-0.5 rounded-lg border flex items-center gap-1
+         hover:border-blue-600 disabled:text-gray-400 disabled:cursor-not-allowed
+         disabled:hover:border-gray-400" [disabled]="!(this.numeroPagina() < this.totalPaginas() - 1)">
+          <lucide-icon [img]="ChevronLast" class="group-hover:text-blue-500"></lucide-icon>
+        </button>
       </div>
     </div>
   </div>

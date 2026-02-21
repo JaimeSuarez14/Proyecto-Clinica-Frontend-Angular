@@ -1,8 +1,16 @@
 import { type ResponseMedicos } from './../../../core/models/Medico';
 import { Component, computed, effect, inject, NgModule, signal } from '@angular/core';
 import { MedicoService } from '../../../core/services/medico-service';
-import { LucideAngularModule, CirclePlus, Search } from 'lucide-angular';
-import {FormsModule} from '@angular/forms';
+import {
+  LucideAngularModule,
+  CirclePlus,
+  Search,
+  ChevronRight,
+  ChevronLast,
+  ChevronLeft,
+  ChevronFirst,
+} from 'lucide-angular';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-medico-page',
@@ -11,7 +19,10 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './medico-page.css',
 })
 export class MedicoPage {
-
+  readonly ChevronRight = ChevronRight;
+  readonly ChevronLast = ChevronLast;
+  readonly ChevronLeft = ChevronLeft;
+  readonly ChevronFirst = ChevronFirst;
   readonly search = Search;
   readonly circlePlus = CirclePlus;
   private medicoService = inject(MedicoService);
@@ -37,6 +48,7 @@ export class MedicoPage {
 
   obtenerMedicos(pagina: number, cantidad: number, search: string | null = null) {
     this.cargando.set(true);
+    this.error.set(null);
     this.medicoService.obtenerMedicos(pagina, cantidad, search).subscribe({
       next: (data) => {
         this.response.set(data);
@@ -47,5 +59,33 @@ export class MedicoPage {
         this.error.set('Error al cargar los medicos: ' + err);
       },
     });
+  }
+
+  /** Metodos para paginar */
+  // rango mostrado
+  desde = computed(() => this.numeroPagina()==0 ? (this.numeroPagina()+1) : (this.numeroPagina()+1 * this.cantidadPorPagina()));
+
+  hasta = computed(() =>
+    Math.min((this.numeroPagina() + 1) * this.cantidadPorPagina(), this.totalMedicos()!),
+  );
+
+  totalPaginas = computed(() => Math.ceil(this.totalMedicos()! / this.cantidadPorPagina()));
+
+  // navegación segura
+  primera() {
+    this.numeroPagina.set(0);
+  }
+
+  anterior() {
+    if (this.numeroPagina() > 0) this.numeroPagina.update((v) => v - 1);
+  }
+  siguiente() {
+    if (this.numeroPagina() < this.totalPaginas() - 1) this.numeroPagina.update((v) => v + 1);
+  }
+
+
+
+  ultima() {
+    this.numeroPagina.set(this.totalPaginas() - 1);
   }
 }

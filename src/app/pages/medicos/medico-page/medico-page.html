@@ -14,9 +14,9 @@
         <lucide-icon [img]="circlePlus" class="group-hover:text-blue-500"></lucide-icon>
         <span class="group-hover:text-blue-500">Crear</span>
       </button>
-      <div class="relative">
-        <input type="text" class="border p-2 rounded-md" placeholder="Ingrese para buscar...">
-        <lucide-icon [img]="search" class="group-hover:text-blue-500 absolute right-1 top-1"></lucide-icon>
+      <div class="relative group">
+        <input type="text" class="border p-2 rounded-md" placeholder="Ingrese para buscar..." [(ngModel)]="busqueda" (keydown.enter)="buscarPor()">
+        <lucide-icon [img]="search" class="group-hover:text-blue-500  hover:scale-105  duration-300 absolute right-1 top-1" (click)="buscarPor()"></lucide-icon>
       </div>
     </div>
     <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200">

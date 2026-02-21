@@ -83,9 +83,13 @@ export class MedicoPage {
     if (this.numeroPagina() < this.totalPaginas() - 1) this.numeroPagina.update((v) => v + 1);
   }
 
-
-
   ultima() {
     this.numeroPagina.set(this.totalPaginas() - 1);
+  }
+
+  public busqueda: string = "";
+  buscarPor(){
+    this.textoBusqueda.set(this.busqueda);
+    this.numeroPagina.set(0);
   }
 }

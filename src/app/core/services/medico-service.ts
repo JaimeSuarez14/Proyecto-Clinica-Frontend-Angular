@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseMedicos } from '../models/Medico';
 
@@ -14,8 +14,18 @@ export class MedicoService {
 
   }
 
-  obtenerMedicos(): Observable< ResponseMedicos >{
-    return this.http.get<ResponseMedicos>(this.apiUrl);
+  obtenerMedicos(numeroPagina: number, cantidadPorPagina: number, textoBusqueda?: string | null): Observable< ResponseMedicos >{
+     // Construir los query params
+    let params = new HttpParams()
+      .set('cantidad', cantidadPorPagina.toString())
+      .set('pagina', numeroPagina.toString());
+
+    // Solo agregar textoBusqueda si tiene un valor (no null, no undefined, no vacío)
+    if (textoBusqueda) {
+      params = params.set('textoBusqueda', textoBusqueda);
+    }
+
+    return this.http.get<ResponseMedicos>(this.apiUrl, { params }) ;
 
   }
 }

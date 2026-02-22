@@ -61,7 +61,7 @@ export class MedicoPage {
 
   /** Metodos para paginar */
   // rango mostrado
-  desde = computed(() => this.numeroPagina()==0 ? (this.numeroPagina()+1) : (this.numeroPagina()+1 * this.cantidadPorPagina()));
+  desde = computed(() => this.numeroPagina()==0 ? (this.numeroPagina()+1) : ((this.numeroPagina() * this.cantidadPorPagina() ) + 1));
 
   hasta = computed(() =>
     Math.min((this.numeroPagina() + 1) * this.cantidadPorPagina(), this.totalMedicos()!),

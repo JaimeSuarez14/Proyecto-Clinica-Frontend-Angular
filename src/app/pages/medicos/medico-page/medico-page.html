@@ -5,9 +5,9 @@
       <h1 class="text-3xl font-bold text-gray-900">Lista de Médicos</h1>
     </div>
     @if (error()) {
-      <p class="px-6 py-10 text-center text-gray-400 italic">
-              {{error()}}
-      </p>
+    <p class="px-6 py-10 text-center text-gray-400 italic">
+      {{error()}}
+    </p>
     }
     <div class="flex justify-between my-2">
       <button type="button" class="px-2 group py-1 rounded-lg border flex items-center gap-1 hover:border-blue-600 ">
@@ -15,8 +15,11 @@
         <span class="group-hover:text-blue-500">Crear</span>
       </button>
       <div class="relative group">
-        <input type="text" class="border p-2 rounded-md" placeholder="Ingrese para buscar..." [(ngModel)]="busqueda" (keydown.enter)="buscarPor()">
-        <lucide-icon [img]="search" class="group-hover:text-blue-500  hover:scale-105  duration-300 absolute right-1 top-1" (click)="buscarPor()"></lucide-icon>
+        <input type="text" class="border p-2 rounded-md" placeholder="Ingrese para buscar..." [(ngModel)]="busqueda"
+          (keydown.enter)="buscarPor()">
+        <lucide-icon [img]="search"
+          class="group-hover:text-blue-500  hover:scale-105  duration-300 absolute right-1 top-1"
+          (click)="buscarPor()"></lucide-icon>
       </div>
     </div>
     <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200">
@@ -62,17 +65,18 @@
     <div class="flex justify-end my-2 text-sm">
       <div class="flex gap-1 items-center">
         <span>Item por pagina</span>
-        <select name="" id="" class="py-0.5 px-1 border ms-1 rounded-lg"  [(ngModel)]="cantidadPorPagina">
-          <option value=1>1</option>
-          <option value=2>2</option>
-          <option value=5>5</option>
-          <option value=10 >10</option>
-          <option value=20 >20</option>
+        <select class="py-0.5 px-1 border ms-1 rounded-lg" [ngModel]="cantidadPorPagina()"
+          (ngModelChange)="cantidadPorPagina.set($event); numeroPagina.set(0)">
+          <option [value]="1">1</option>
+          <option [value]="2">2</option>
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="20">20</option>
         </select>
         <span>desde {{ desde() }} al {{hasta()}} Pag. {{ totalPaginas() }}</span>
 
         @for (item of paginacion(); track $index) {
-          <app-boton-paginacion [icono]="item.icono" [desactivar]="item.desabled" (clicked)="item.clicked()" />
+        <app-boton-paginacion [icono]="item.icono" [desactivar]="item.desabled" (clicked)="item.clicked()" />
         }
       </div>
     </div>

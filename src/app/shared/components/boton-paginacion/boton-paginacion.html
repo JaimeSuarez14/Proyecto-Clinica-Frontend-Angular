@@ -1,0 +1,5 @@
+<button (click)="hacerClick()" class="group px-2 py-0.5 rounded-lg border flex items-center gap-1
+         hover:border-blue-600 disabled:text-gray-400 disabled:cursor-not-allowed
+         disabled:hover:border-gray-400" [disabled]="desactivar()">
+  <lucide-icon [img]="icono()" [class]="desactivar() ? '' :'group-hover:text-blue-500'"></lucide-icon>
+</button>

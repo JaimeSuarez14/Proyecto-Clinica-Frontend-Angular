@@ -11,18 +11,16 @@ import {
   ChevronFirst,
 } from 'lucide-angular';
 import { FormsModule } from '@angular/forms';
+import { BotonPaginacion } from "../../../shared/components/boton-paginacion/boton-paginacion";
 
 @Component({
   selector: 'app-medico-page',
-  imports: [FormsModule, LucideAngularModule],
+  imports: [FormsModule, LucideAngularModule, BotonPaginacion],
   templateUrl: './medico-page.html',
   styleUrl: './medico-page.css',
 })
 export class MedicoPage {
-  readonly ChevronRight = ChevronRight;
-  readonly ChevronLast = ChevronLast;
-  readonly ChevronLeft = ChevronLeft;
-  readonly ChevronFirst = ChevronFirst;
+
   readonly search = Search;
   readonly circlePlus = CirclePlus;
   private medicoService = inject(MedicoService);
@@ -92,4 +90,28 @@ export class MedicoPage {
     this.textoBusqueda.set(this.busqueda);
     this.numeroPagina.set(0);
   }
+
+  //array para los botones de paginacion
+  paginacion =computed(()=> [
+    {
+      icono: ChevronFirst,
+      desabled: (this.numeroPagina() <= 0),
+      clicked: () => this.primera()
+    },
+    {
+      icono: ChevronLeft,
+      desabled: (this.numeroPagina() <= 0),
+      clicked: () => this.anterior(),
+    },
+    {
+      icono: ChevronRight,
+      desabled: !(this.numeroPagina() < this.totalPaginas() - 1),
+      clicked: () => this.siguiente()
+    },
+    {
+      icono: ChevronLast,
+      desabled: !(this.numeroPagina() < this.totalPaginas() - 1),
+      clicked: () => this.ultima(),
+    },
+  ])
 }

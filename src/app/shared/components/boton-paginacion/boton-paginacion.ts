@@ -12,11 +12,6 @@ export class BotonPaginacion {
   desactivar = input<boolean>(true)
   clicked = output<void>()
 
-  constructor(){
-    console.log(this.desactivar());
-
-  }
-
   hacerClick() {
   if (this.desactivar()) return;
   this.clicked.emit();

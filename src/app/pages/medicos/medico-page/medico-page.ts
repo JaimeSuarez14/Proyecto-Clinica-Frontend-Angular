@@ -34,7 +34,6 @@ export class MedicoPage {
   public textoBusqueda = signal<string>('');
 
   constructor() {
-    this.obtenerMedicos(this.numeroPagina(), this.cantidadPorPagina(), this.textoBusqueda());
 
     effect(() => {
       const numeroPagina = this.numeroPagina();

@@ -20,6 +20,9 @@
         <lucide-icon [img]="search"
           class="group-hover:text-blue-500  hover:scale-105  duration-300 absolute right-1 top-1"
           (click)="buscarPor()"></lucide-icon>
+          @if(busqueda.length > 0){
+            <span (click)="busqueda=''; buscarPor() " class="cursor-pointer text-sm text-red-500 hover:font-bold absolute top-2 right-9 py-px px-1 rounded-full border border-red-600">✕</span>
+          }
       </div>
     </div>
     <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200">

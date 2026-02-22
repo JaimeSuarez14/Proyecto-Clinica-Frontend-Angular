@@ -20,7 +20,7 @@ export class Home {
     {
       icon : Users ,
       name : "Paciente",
-      route : "/medicos",
+      route : "/pacientes",
       active : true
     },
     {
